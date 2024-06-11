@@ -36,8 +36,14 @@
           return;
         }
         $("#list").append(
-          `<tr><td>${name.value}</td><td>${email.value}</td><td>${age.value}</td><td><button onclick="deleted(this)">Delete</button></td></tr>`
+          `<tr><td>${name.value}</td><td>${email.value}</td><td>${age.value}</td><td><button onclick="deleted(this)">Delete</button></td>
+            <td><button onclick="edit(this)">Edit</button></td>
+            </tr>`
         );
+
+        name.value = "";
+        email.value = "";
+        age.value = "";
       }
       function deleted(a) {
         if (confirm("Are you sure?")) {
@@ -45,6 +51,23 @@
             a.parentNode.parentNode
           );
         } else return;
+      }
+      function edit(a) {
+        const row = a.parentNode.parentNode;
+
+        const cells = row.children;
+
+        const nameCell = cells[0];
+        const emailCell = cells[1];
+        const ageCell = cells[2];
+
+        console.log(nameCell.textContent);
+
+        name.value = nameCell.textContent;
+        email.value = emailCell.textContent;
+        age.value = ageCell.textContent;
+
+        a.parentNode.parentNode.parentNode.removeChild(a.parentNode.parentNode);
       }
     </script>
   </body>
