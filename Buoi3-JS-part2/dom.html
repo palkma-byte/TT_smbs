@@ -21,24 +21,29 @@
           <th>Name</th>
           <th>Email</th>
           <th>Age</th>
-          <th>Delete</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody id="list"></tbody>
     </table>
     <script>
+      const name = document.getElementById("name");
+      const email = document.getElementById("email");
+      const age = document.getElementById("age");
+
       function submit() {
-        const name = document.getElementById("name");
-        const email = document.getElementById("email");
-        const age = document.getElementById("age");
         if (name.value == "" || email.value == "" || age.value == "") {
           alert("Vui lòng nhập đủ thông tin.");
           return;
         }
         $("#list").append(
-          `<tr><td>${name.value}</td><td>${email.value}</td><td>${age.value}</td><td><button onclick="deleted(this)">Delete</button></td>
+          `<tr>
+            <td>${name.value}</td>
+            <td>${email.value}</td>
+            <td>${age.value}</td>
+            <td><button onclick="deleted(this)">Delete</button></td>
             <td><button onclick="edit(this)">Edit</button></td>
-            </tr>`
+          </tr>`
         );
 
         name.value = "";
