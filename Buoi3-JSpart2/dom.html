@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Management</h1>
+    <h2>Name:</h2>
+    <input type="text" id="name" />
+    <h2>Email:</h2>
+    <input type="text" id="email" />
+    <h2>Age:</h2>
+    <input type="text" id="age" />
+    <button onclick="submit()">Submit</button>
+    <hr />
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Age</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody id="list"></tbody>
+    </table>
+    <script>
+      function submit() {
+        const name = document.getElementById("name");
+        const email = document.getElementById("email");
+        const age = document.getElementById("age");
+        if (name.value == "" || email.value == "" || age.value == "") {
+          alert("Vui lòng nhập đủ thông tin.");
+          return;
+        }
+        $("#list").append(
+          `<tr><td>${name.value}</td><td>${email.value}</td><td>${age.value}</td><td><button onclick="deleted(this)">Delete</button></td></tr>`
+        );
+      }
+      function deleted(a) {
+        if (confirm("Are you sure?")) {
+          a.parentNode.parentNode.parentNode.removeChild(
+            a.parentNode.parentNode
+          );
+        } else return;
+      }
+    </script>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</html>
