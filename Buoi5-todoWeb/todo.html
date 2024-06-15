@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/all.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1 class="text-center mb-4">To-Do List</h1>
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          id="taskAdd"
+          class="form-control"
+          placeholder="Add a new task"
+          aria-label="Add a new task"
+        />
+        <div class="input-group-append">
+          <button class="btn btn-primary" onclick="add()">Add</button>
+        </div>
+      </div>
+      <div id="taskList" class="list-group"></div>
+    </div>
+
+    <script>
+      const taskAdd = document.getElementById("taskAdd");
+      function add() {
+        if (taskAdd.value === "") {
+          alert("Task box must not be empty!");
+          return;
+        }
+        $("#taskList").append(
+          `<div class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>${taskAdd.value}</span>
+                    <div>
+                        <button class="btn btn-success btn-sm mr-2" onclick="complete(this)">Complete</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleted(this)">Delete</button>
+                    </div>
+                </div>`
+        );
+        taskAdd.value = "";
+      }
+      function deleted(a) {
+        a.parentNode.parentNode.parentNode.removeChild(a.parentNode.parentNode);
+      }
+
+      function complete(a) {
+        const task = a.parentElement.previousElementSibling;
+        task.style.textDecoration =
+          task.style.textDecoration === "line-through" ? "" : "line-through";
+      }
+    </script>
+  </body>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</html>
