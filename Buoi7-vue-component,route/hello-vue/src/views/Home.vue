@@ -1,7 +1,7 @@
 <template>
   <main>
     <h1>This is the home page</h1>
-    <item-list :itemsList="itemsList"></item-list>
+    <ItemList v-bind:itemsList="itemsList"></ItemList>
   </main>
 </template>
 
